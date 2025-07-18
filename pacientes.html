@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informe Mensual</title>
+    <link rel="stylesheet" href="pacientes.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Objetivo semanal</h1>
+        </header>
+
+        <div class="filtros-panel">
+            <select id="yearSelector" class="selector-kpi"></select>
+            <select id="monthSelector" class="selector-kpi"></select>
+            <select id="weekSelector" class="selector-kpi"></select>
+        </div>
+
+        <div class="botonera">
+            <a href="ingresos.html" class="boton">Euros</a>
+            <a href="pacientes.html" class="boton">Pacientes</a>
+        </div>
+
+        <div class="contenedor-cards">
+            <!-- Columna Izquierda -->
+            <div class="columna-total">
+                <!-- Carta 1: Pacientes comerciales -->
+                <section class="main-card" id="card-pacientes-comerciales">
+                    <div class="columna-izquierda">
+                        <h2>Pacientes Comerciales:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="pacientes-comerciales-value"></span>
+                                <div class="status">
+                                    <span class="icon">✔</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p> +/- Objetivo: <span id="pacientes-comerciales-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-comerciales"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p> +/- Año anterior: <span id="pacientes-comerciales-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red" id="tasa-comerciales-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero" id="pacientes-comerciales-barra-actual"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero" id="pacientes-comerciales-barra-objetivo"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero" id="pacientes-comerciales-barra-anterior"></span>
+                                </p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-fieles">
+                        <div class="box-row">
+                            <div>
+                                <p class="gray">FIELES</p>
+                                <p><span id="pacientes-comerciales-fieles"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">1ªV</p>
+                                <p><span id="pacientes-comerciales-primera"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">TICKET MEDIO</p>
+                                <p><span id="pacientes-comerciales-ticket"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Carta 3: Pacientes Tratados -->
+                <section class="main-card" id="card-pacientes-tratados">
+                    <div class="columna-izquierda">
+                        <h2>Pacientes Tratados:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="pacientes-tratados-value"></span>
+                                <div class="status">
+                                    <span class="icon">✔</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p> +/- Objetivo: <span id="pacientes-tratados-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-tratados"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p> +/- Año anterior: <span id="pacientes-tratados-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red" id="tasa-tratados-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero" id="pacientes-tratados-barra-actual"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero" id="pacientes-tratados-barra-objetivo"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero" id="pacientes-tratados-barra-anterior"></span></p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-fieles">
+                        <div class="box-row">
+                            <div>
+                                <p class="gray">FIELES</p>
+                                <p><span id="pacientes-tratados-fieles"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">1ªV</p>
+                                <p><span id="pacientes-tratados-primera"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">TICKET MEDIO</p>
+                                <p><span id="pacientes-tratados-ticket"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="columna-total">
+                <!-- Carta 2: Pacientes Aceptados -->
+                <section class="main-card" id="card-pacientes-aceptados">
+                    <div class="columna-izquierda">
+                        <h2>Pacientes Aceptados:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="pacientes-aceptados-value"></span>
+                                <div class="status">
+                                    <span class="icon">✔</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p> +/- Objetivo: <span id="pacientes-aceptados-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-aceptado"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p> +/- Año anterior: <span id="pacientes-aceptados-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red" id="tasa-aceptados-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero"></span></p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-fieles">
+                        <div class="box-row">
+                            <div>
+                                <p class="gray">FIELES</p>
+                                <p><span id="pacientes-aceptados-fieles"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">1ªV</p>
+                                <p><span id="pacientes-aceptados-primera"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">TICKET MEDIO</p>
+                                <p><span id="pacientes-aceptados-ticket"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Carta 4: Pacientes Cobrados -->
+                <section class="main-card" id="card-pacientes-cobrados">
+                    <div class="columna-izquierda">
+                        <h2>Pacientes Cobrados:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="pacientes-cobrados-value"></span>
+                                <div class="status">
+                                    <span class="icon">✔</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p> +/- Objetivo: <span id="pacientes-cobrados-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-cobrados"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p> +/- Año anterior: <span id="pacientes-cobrados-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red" id="tasa-cobrados-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero" id="pacientes-cobrados-barra-actual"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero" id="pacientes-cobrados-barra-objetivo"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero" id="pacientes-cobrados-barra-anterior"></span></p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-fieles">
+                        <div class="box-row">
+                            <div>
+                                <p class="gray">FIELES</p>
+                                <p><span id="pacientes-cobrados-fieles"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">1ªV</p>
+                                <p><span id="pacientes-cobrados-primera"></span></p>
+                            </div>
+                            <div>
+                                <p class="gray">TICKET MEDIO</p>
+                                <p><span id="pacientes-cobrados-ticket"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+        <script src="index.js"></script>
+</body>
+
+</html>

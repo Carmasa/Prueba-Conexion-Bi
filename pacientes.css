@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #f1f1f1;
+    color: #333;
+}
+
+header {
+
+    text-align: center;
+}
+
+.botonera {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.boton {
+    background-color: #00949d;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #007a84;
+}
+
+.contenedor-cards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.container {
+    padding: 2rem;
+}
+
+h1 {
+    color: #00949d;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.main-card {
+    display: flex;
+    gap: 1rem;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
+    width: 39rem;
+}
+
+.columna-izquierda {
+    flex: 1;
+}
+
+.columna-central {
+    flex: 2;
+}
+
+.box-ingresos {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    box-shadow: 2px 10px 15px rgba(0, 0, 0, 0.05);
+    width: 17rem;
+}
+
+.box {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 2px 10px 15px rgba(0, 0, 0, 0.05);
+    width: 17rem;
+}
+
+.box-fieles {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 10px 15px rgba(0, 0, 0, 0.05);
+    width: 35rem;
+    margin-left: 1rem;
+}
+
+.box p {
+    word-spacing: 0.5rem;
+}
+
+.resultado-box .resultado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.numero {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00949d;
+    margin-left: 0.5rem;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #00949d;
+}
+
+.icon {
+    background-color: #00838B;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.8rem;
+}
+
+.gray {
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.orange {
+    color: orange;
+    font-size: 0.8rem;
+}
+
+
+.bar {
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    position: relative;
+    min-width: 40px;
+    min-height: 22px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    height: 25px;
+}
+
+.bar-label {
+    position: absolute;
+    right: 8px;
+    left: 8px;
+    color: #222;
+    font-weight: bold;
+    font-size: 0.95em;
+    background: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    /* <-- Añade esto */
+    pointer-events: none;
+}
+
+.bar.actual {
+    
+}
+
+.bar.objetivo {
+    background: #555;
+}
+
+.bar.anterior {
+    background: #ccc;
+}
+
+.box-row {
+    display: flex;
+}
+
+.box-row div {
+    flex: 1;
+    text-align: center;
+}
+
+
+.flecha-arriba {
+    color: green;
+    font-size: 0.8rem;
+}
+
+.flecha-abajo {
+    color: red;
+    font-size: 0.8rem;
+}
+
+
+
+.columna-total {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Estilos profesionales para el panel de filtros */
+.filtros-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    background: #fff;
+    padding: 1.2rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.filtros-panel label {
+    font-weight: 600;
+    color: #00949d;
+    margin-right: 0.5rem;
+}
+
+.filtros-panel select {
+    appearance: none;
+    background: #f1f1f1;
+    border: 2px solid #00949d;
+    border-radius: 8px;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    font-size: 1rem;
+    color: #00949d;
+    font-weight: 600;
+    outline: none;
+    transition: border 0.2s;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-right: 0.5rem;
+    position: relative;
+}
+
+.filtros-panel select:focus {
+    border-color: #007a84;
+    background: #e0f7fa;
+}
+
+.filtros-panel select:hover {
+    border-color: #007a84;
+}
+
+.filtros-panel option {
+    color: #333;
+    font-weight: 400;
+}

@@ -1,0 +1,8 @@
+Metodo Pago ID;Metodo Pago
+"TC";"Tarjeta de crédito"
+"EF";"Efectivo"
+"CH";"Cheque bancario"
+"TR";"Transferencia bancaria"
+"CC";"Cargo en cuenta"
+"DE";"Devolución"
+"DB";"Domiciliación bancaria"

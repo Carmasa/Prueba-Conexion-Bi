@@ -1,0 +1,337 @@
+DEFINE 
+---- MODEL MEASURES BEGIN ----
+MEASURE [% Produccion Vs Cobrado] = DIVIDE([Euros Produccion],[Cobrado (€)])
+MEASURE [% Produccion Vs Cobrado LY] = DIVIDE([Euros Produccion LY], [Cobrado (€) LY])
+MEASURE [% Tasa de ocupación citas sobre disponibilidad clinica] = DIVIDE([Duracion citas], [Capacidad doctores (Horas)])
+MEASURE [% Tasa de ocupación citas sobre disponibilidad clinica LY] = DIVIDE([Duracion citas LY], [Capacidad clinica (Horas)])
+MEASURE [% Tratamientos precio personalizado] = 0
+MEASURE [%. Aceptacion Euros] = DIVIDE([Euros Aceptados],[Euros Presupuestado])
+MEASURE [%. Capacidad doctores] = DIVIDE([Capacidad doctores (Horas)], [Capacidad doctores (Horas) LY]) - 1
+MEASURE [%. Capacidad doctores Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Euros Aceptado] * 100,2)), "%)")
+MEASURE [%. Citas sin asignacion de colaborador] = DIVIDE([Numero citas sin doctor], [Numero de citas en agenda])
+MEASURE [%. Citas sin codio medico] = DIVIDE([Numero citas sin grupo medico], [Numero de citas en agenda])
+MEASURE [%. Citas vencidas sin cambio de estado] = DIVIDE([Numero Citas vencidas sin cambio de estado], [Numero de citas en agenda])
+MEASURE [%. Cobrado] = DIVIDE([Cobrado (€)], [Cobrado (€) LY]) - 1
+MEASURE [%. Cobrado Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Cobrado] * 100,2)), "%)")
+MEASURE [%. Cobro Medio x Pacientes] = DIVIDE([Cobro Medio x Paciente (€)], [Cobro Medio x Pacientes (€) LY]) - 1
+MEASURE [%. Cobro Medio x Pacientes Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Cobro Medio x Pacientes] * 100,2)), "%)")
+MEASURE [%. Costes Produccion] = DIVIDE([Costes produccion], [Costes produccion LY]) - 1
+MEASURE [%. Costes Produccion Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Costes Produccion] * 100,2)), "%)")
+MEASURE [%. Duracion citas] = DIVIDE([Duracion citas], [Duracion citas LY]) - 1
+MEASURE [%. Duracion citas Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Duracion citas] * 100,2)), "%)")
+MEASURE [%. Euros Aceptado] = DIVIDE([Euros Aceptados], [Euros Aceptados LY]) - 1
+MEASURE [%. Euros Aceptados Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Euros Aceptado] * 100,2)), "%)")
+MEASURE [%. Euros Presupuestados] = DIVIDE([Euros Presupuestado], [Euros Presupuestados LY]) - 1
+MEASURE [%. Euros Presupuestados Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Euros Presupuestados] * 100,2)), "%)")
+MEASURE [%. Euros Produccion] = DIVIDE([Euros Produccion], [Euros Produccion LY]) - 1
+MEASURE [%. Euros Produccion Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Euros Produccion] * 100,2)), "%)")
+MEASURE [%. Gastos] = DIVIDE([Importe Gastos], [Gastos LY]) - 1
+MEASURE [%. Gastos sobre Caja] = 1 - DIVIDE([Importe Gastos],[Cobrado (€)])
+MEASURE [%. Gastos sobre Produccion] = 1 - DIVIDE([Importe Gastos], [Euros Produccion])
+MEASURE [%. Gastos Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Gastos] * 100,2)), "%)")
+MEASURE [%. Gastos Variables Material sobre venta] = DIVIDE([Gastos Variables Material], [Euros Produccion])
+MEASURE [%. Gastos Variables Personal y Laboratorio sobre venta] = DIVIDE([Gastos Variables Personal y Laboratorio], [Euros Produccion])
+MEASURE [%. Media dias aceptacion presupuesto] = DIVIDE([Media dias aceptacion presupuesto], [Media dias aceptacion presupuesto LY]) - 1
+MEASURE [%. Media dias aceptacion presupuesto Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Media dias aceptacion presupuesto] * 100,2)), "%)")
+MEASURE [%. Numero de citas en agenda] = DIVIDE([Numero de citas en agenda], [Numero de citas en agenda LY]) - 1
+MEASURE [%. Numero de citas en agenda Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Numero de citas en agenda] * 100,2)), "%)")
+MEASURE [%. Numero de pacientes atendidos vs LY Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Pacientes atendidos vs LY] * 100,2)), "%)")
+MEASURE [%. Numero Pacientes Cobro] = DIVIDE([Numero Pacientes Cobro], [Numero Pacientes Cobro LY]) - 1
+MEASURE [%. Numero Pacientes Cobro Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Numero Pacientes Cobro] * 100,2)), "%)")
+MEASURE [%. Ocupacion clinica / doctor] = DIVIDE([Capacidad doctores (Horas)], [Capacidad clinica (Horas)])
+MEASURE [%. Pacientes atendidos vs LY] = DIVIDE([Numero de pacientes atendidos], [Numero de pacientes atendidos LY]) - 1
+MEASURE [%. Pacientes sin codigo postal] = 0.5
+MEASURE [%. Pacientes Tratados] = DIVIDE([Numero de pacientes tratados], [Numero Pacientes Tratados LY]) - 1
+MEASURE [%. Pacientes Tratados Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Pacientes Tratados] * 100,2)), "%)")
+MEASURE [%. Presupuestos aceptados por fecha aceptacion (€)] = DIVIDE([Presupuestos aceptados por fecha aceptacion (€)], [Presupuestos aceptados por fecha aceptacion LY (€)]) - 1
+MEASURE [%. Presupuestos aceptados por fecha aceptacion Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Presupuestos aceptados por fecha aceptacion (€)] * 100,2)), "%)")
+MEASURE [%. Presupuestos sin colaborador] = DIVIDE([Numero de presupuestos sin colaborador], [UD Presupuestados])
+MEASURE [%. Presupuestos sin grupo medico] = DIVIDE([Numero de presupuestos sin grupo medico], [UD Presupuestados])
+MEASURE [%. Presupuestos sin titulo] = DIVIDE(SUM(Movimientos[_PresupuestoSinTitulo]), SUM(Movimientos[_Presupuesto]))
+MEASURE [%. Produccion Vs Presupuetos Aceptados +] = DIVIDE([Euros Produccion], [Presupuestos aceptados por fecha aceptacion (€)])
+MEASURE [%. Ticket Medio Aceptado] = 
+DIVIDE(
+    [Ticket Medio Aceptado] - [Ticket Medio Aceptado LY],
+    [Ticket Medio Aceptado LY],
+    BLANK()
+)
+
+MEASURE [%. Ticket Medio Aceptado Text] = 
+CONCATENATE(
+    CONCATENATE(
+        "(",
+        FORMAT([%. Ticket Medio Aceptado] * 100, "0.00")
+    ),
+    "%)"
+)
+
+MEASURE [%. Ticket Medio Paciente] = 
+DIVIDE(
+    [Ticket Medio Paciente] - [Ticket Medio Paciente LY],
+    [Ticket Medio Paciente LY],
+    BLANK()
+)
+
+MEASURE [%. Ticket Medio Paciente Text] = 
+CONCATENATE(
+    CONCATENATE(
+        "(",
+        FORMAT([%. Ticket Medio Paciente] * 100, "0.00")
+    ),
+    "%)"
+)
+
+MEASURE [%. Ticket Medio Pacientes Tratados] = DIVIDE([Ticket Medio Pacientes Tratados], [Ticket Medio Pacientes Tratados LY]) - 1
+MEASURE [%. Ticket Medio Pacientes Tratados Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Ticket Medio Pacientes Tratados] * 100,2)), "%)")
+MEASURE [%. Ticket Medio Presupuestado] = DIVIDE([Ticket Medio Presupuestado], [Ticket Medio Presupuestado LY]) - 1
+MEASURE [%. Ticket Medio Produccion] = DIVIDE([Ticket Medio Produccion (€)], [Ticket Medio Produccion LY (€)]) - 1
+MEASURE [%. Ticket Medio Produccion Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Ticket Medio Produccion] * 100,2)), "%)")
+MEASURE [%. Ticket medio sillon] = DIVIDE([Ticket medio sillon (€)],[Ticket medio sillon LY]) - 1
+MEASURE [%. Ticket medio sillon Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Ticket medio sillon] * 100,2)), "%)")
+MEASURE [%. Ticket Mediod Presupuestado Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Ticket Medio Presupuestado] * 100,2)), "%)")
+MEASURE [%. Tratamientos] = DIVIDE([Numero de tratamientos], [Numero de tratamientos LY]) - 1
+MEASURE [%. Tratamientos por pacientes] = DIVIDE([Tratamientos por pacientes], [Tratamientos por pacientes LY]) - 1
+MEASURE [%. Tratamientos por pacientes Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Tratamientos por pacientes] * 100,2)), "%)")
+MEASURE [%. Tratamientos sin doctor] = DIVIDE([Numero tratamientos sin doctor], [Numero de tratamientos])
+MEASURE [%. Tratamientos sin grupo medico] = DIVIDE([Numero tratamientos sin grupo medico], [Numero de tratamientos])
+MEASURE [%. Tratamientos sin presupuesto] = DIVIDE([Numero tratamientos sin presupuesto], [Numero de tratamientos])
+MEASURE [%. Tratamientos Text] = CONCATENATE(CONCATENATE("(",ROUND([%. Tratamientos] * 100,2)), "%)")
+MEASURE [%. UD Aceptado] = DIVIDE([UD Aceptados],[UD Aceptado LY]) - 1
+MEASURE [%. UD Aceptados Text] = CONCATENATE(CONCATENATE("(",ROUND([%. UD Aceptado] * 100,2)), "%)")
+MEASURE [%. UD Presupuestados] = DIVIDE([UD Presupuestados],[UD Presupuestados LY]) - 1
+MEASURE [%. UD Presupuestados Text] = CONCATENATE(CONCATENATE("(",ROUND([%. UD Presupuestados] * 100,2)), "%)")
+MEASURE [%. UD Presupuestos Aceptados por Fecha Aceptacion] = DIVIDE([UD Presupuestos Aceptados por Fecha Aceptacion], [UD Presupuestos Aceptados por Fecha Aceptacion LY]) - 1
+MEASURE [%. UD Presupuestos Aceptados por Fecha Aceptacion Texto] = CONCATENATE(CONCATENATE("(",ROUND( [%. UD Presupuestos Aceptados por Fecha Aceptacion] * 100,2)), "%)")
+MEASURE [%Aceptacion Euros] = DIVIDE([Euros Aceptados],[Euros Presupuestado])
+MEASURE [%Aceptacion UD] = DIVIDE([UD Aceptados],[UD Presupuestados])
+MEASURE [_Selector valores disponibles] = INT(NOT(ISEMPTY('Movimientos')))
+MEASURE [Capacidad clinica (Horas)] = SUM(Movimientos[Capacidad Horas Clinica Diaria]) * [Numero de sillones]
+MEASURE [Capacidad doctores (Horas)] = DIVIDE(SUM(Movimientos[Capacidad Diaria Doctor]) , 1)
+MEASURE [Capacidad doctores (Horas) LY] = CALCULATE([Capacidad doctores (Horas)], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Cobrado (€)] = SUM(Movimientos[Importe Pagado Tratamiento])
+MEASURE [Cobrado (€) Exploración] = 
+CALCULATE(
+    [Cobrado (€)] ,
+    KEEPFILTERS(
+        'Grupos Medicos'[Grupo Medico Descripcion] IN {
+            "EXPLORACIÓN, JUICIO CLÍNICO Y PRESUPUESTO" ,
+            "EXPLORACIONES CLÍNICAS" ,
+            "EXPLORACIONES CLÍNICAS GENERALES"
+        }
+    )
+)
+MEASURE [Cobrado (€) LY] = CALCULATE([Cobrado (€)], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Cobrado Conciliado (€)] = 0//SUM(Movimientos[ImportePagado_Conciliado])
+MEASURE [Cobrado No Conciliado] = 0//SUM(Movimientos[ImportePagado_Pdte_Conciliar])
+MEASURE [Cobrado No Exploraciones] = [Cobrado (€)] - [Cobrado (€) Exploración]
+MEASURE [Cobro Medio x Paciente (€)] = DIVIDE([Cobrado (€)],[Numero Pacientes Cobro])
+MEASURE [Cobro Medio x Pacientes (€) LY] = CALCULATE([Cobro Medio x Paciente (€)], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Color KPI] = "#F5F5F5"
+MEASURE [Color Titulo Grafico] = "#62bfba"
+MEASURE [Costes produccion] = CALCULATE(SUM(Movimientos[PrecioCosteComponente]), Movimientos[_Historico] = 1)
+MEASURE [Costes produccion LY] = CALCULATE([Costes produccion], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Deuda Cliente (€)] = 0//SUM(Movimientos[Importe Deuda Cliente])
+MEASURE [Distribucion de la unidad] = [Margen de contribucion] - [Gastos fijos directos]
+MEASURE [Duracion citas] = 
+    CALCULATE(
+        SUM(Movimientos[Cita Duracion Real / NºTratamientos]) / 60,
+        Movimientos[Cita Estado ID] = "FI")
+MEASURE [Duracion citas LY] = CALCULATE([Duracion citas], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Euros Aceptados] = SUM(Movimientos[Importe Presupuesto Aceptado])
+MEASURE [Euros Aceptados Fecha Acepta] = SUM(Movimientos[Importe Presupuesto Aceptado Fecha Aceptacion])
+MEASURE [Euros Aceptados Fecha Aceptacion LY] = CALCULATE([Euros Aceptados Fecha Acepta], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Euros Aceptados LY] = CALCULATE([Euros Aceptados], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Euros Exploración] = 
+CALCULATE(
+    [Euros Produccion] ,
+    KEEPFILTERS(
+        'Grupos Medicos'[Grupo Medico Descripcion] IN {
+            "EXPLORACIÓN, JUICIO CLÍNICO Y PRESUPUESTO" ,
+            "EXPLORACIONES CLÍNICAS" ,
+            "EXPLORACIONES CLÍNICAS GENERALES"
+        }
+    )
+)
+MEASURE [Euros Presupuestado] = SUM(Movimientos[Importe Presupuesto])
+MEASURE [Euros Presupuestados LY] = CALCULATE([Euros Presupuestado], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Euros Produccion] = SUM(Movimientos[Importe Producido])
+MEASURE [Euros Produccion LY] = CALCULATE([Euros Produccion], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Euros Producción sin Exploraciones] = [Euros Produccion] - [Euros Exploración]
+MEASURE [Gasto Medio por Acto] = DIVIDE([Importe Gastos], [Numero de Actos])
+MEASURE [Gastos € sin imputar a ningun grupo medico] = CALCULATE(Medidas[Importe Gastos],'Grupos Medicos'[Grupo Medico ID] = -1)
+MEASURE [Gastos € sin tipo de gastos] = CALCULATE(Medidas[Importe Gastos],'Tipos Gastos'[IdTipoGasto] = -1)
+MEASURE [Gastos fijos directos] = CALCULATE([Importe Gastos], 'Tipos Gastos'[IdCategoria] = DISTINCT('ID Gasto Fijo'[ID Gasto Fijo]))
+MEASURE [Gastos fijos directos auxiliar y hyginiesta] = CALCULATE([Gastos fijos directos], 'Tipos Gastos'[IdGrupoGasto] = 662)
+MEASURE [Gastos fijos directos sobre venta] = DIVIDE([Gastos fijos directos], [Euros Produccion])
+MEASURE [Gastos indirectos] = CALCULATE([Importe Gastos], 'Tipos Gastos'[IdCategoria] = DISTINCT('ID Gasto Indirecto'[ID Gasto Indirecto]))
+MEASURE [Gastos indirectos sobre venta] = DIVIDE([Gastos indirectos], [Euros Produccion])
+MEASURE [Gastos LY] = CALCULATE([Importe Gastos], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Gastos Variables] = CALCULATE([Importe Gastos], 'Tipos Gastos'[IdCategoria] = DISTINCT('ID Gasto Variable'))
+MEASURE [Gastos Variables Material] = CALCULATE(SUM(Movimientos[ImporteGasto]), 'Tipos Gastos'[IdGrupoGasto] = 649)
+MEASURE [Gastos Variables Personal y Laboratorio] = CALCULATE(SUM(Movimientos[ImporteGasto]), 'Tipos Gastos'[IdGrupoGasto] = 641 || 'Tipos Gastos'[IdGrupoGasto] = 646)
+MEASURE [Gastos variables sobre ventas] = DIVIDE([Gastos Variables], [Euros Produccion])
+MEASURE [Importe Gastos] = ABS(SUM(Movimientos[Importe Gasto Repartido]))
+MEASURE [Margen de contribucion] = [Euros Produccion] - [Gastos Variables]
+MEASURE [Media dias aceptacion presupuesto] = DIVIDE(SUM(Movimientos[Dias Aceptacion Presupuesto]), SUM(Movimientos[_Presupuesto Aceptado]))
+MEASURE [Media dias aceptacion presupuesto LY] = CALCULATE([Media dias aceptacion presupuesto], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero citas sin doctor] = 
+CALCULATE (
+        DISTINCTCOUNT ( Movimientos[Cita ID] ),
+            Movimientos[Tipo Movimiento] = "Citas Lineas",
+            Movimientos[Doctor ID] = "_SIN DEFINIR"
+    )
+MEASURE [Numero citas sin grupo medico] = 
+CALCULATE (
+        DISTINCTCOUNT ( Movimientos[Cita ID] ),
+            Movimientos[Tipo Movimiento] = "Citas Lineas",
+            Movimientos[Grupo Medico ID] = -1
+    )
+MEASURE [Numero Citas vencidas sin cambio de estado] = CALCULATE(SUM(Movimientos[_Cita Sin Cambio Estado]), Movimientos[_Cita Sin Cambio Estado] = 1,NOT(Movimientos[Cita Estado ID] IN {"NC","NL"}))
+MEASURE [Numero de Actos] = SUM(Movimientos[Acto Medico])
+MEASURE [Numero de citas en agenda] = 
+CALCULATE(
+    DISTINCTCOUNT(Movimientos[Cita ID]),
+    Movimientos[Cita Estado ID] = "FI")
+MEASURE [Numero de citas en agenda LY] = CALCULATE([Numero de citas en agenda], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero de citas vencidas] = CALCULATE(DISTINCTCOUNT(Movimientos[Cita ID]), Movimientos[Fecha Cita] < TODAY())
+MEASURE [Numero de citas vencidas sin cambio de estado] = CALCULATE(SUM(Movimientos[_Cita]), Movimientos[_CitaEstadoPdt] = 1, ALL(Calendario[Fecha]), Calendario[Fecha] < TODAY())
+MEASURE [Numero de pacientes atendidos] = CALCULATE(DISTINCTCOUNT(Movimientos[Cita ID]), Movimientos[Cita Estado ID] ="FI")
+MEASURE [Numero de pacientes atendidos LY] = CALCULATE([Numero de pacientes atendidos], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero de pacientes tratados] = CALCULATE(DISTINCTCOUNT(Movimientos[Paciente ID]), Movimientos[Acto Medico] = 1)
+MEASURE [Numero de presupuestos sin colaborador] = 
+CALCULATE (
+    DISTINCTCOUNT ( Movimientos[Presupuesto ID] ),
+    Movimientos[Tipo Movimiento] = "Presupuestos Lineas",
+    Movimientos[Doctor ID] = "_SIN DEFINIR"
+)
+MEASURE [Numero de presupuestos sin grupo medico] = 
+CALCULATE (
+    DISTINCTCOUNT ( Movimientos[Presupuesto ID] ),
+    Movimientos[Tipo Movimiento] = "Presupuestos Lineas",
+    Movimientos[Grupo Medico ID] = -1
+)
+MEASURE [Numero de sillones] = SUM(Clinica[Sillones])
+MEASURE [Numero de tratamientos] = CALCULATE(DISTINCTCOUNT(Movimientos[Detalle Plan Tratamiento ID]), Movimientos[Acto Medico] = 1)
+MEASURE [Numero de tratamientos LY] = CALCULATE([Numero de tratamientos], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero Pacientes] = CALCULATE(DISTINCTCOUNT(Movimientos[Paciente ID]),Movimientos[_Presupuesto] = 1)
+MEASURE [Numero Pacientes Aceptados] = 
+CALCULATE(
+    DISTINCTCOUNT(Movimientos[Paciente ID]),
+    Movimientos[Presupuesto Estado ID] IN {"AC"}
+)
+MEASURE [Numero Pacientes Aceptados LY] = CALCULATE([Numero Pacientes Aceptados], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero Pacientes Cobro] = CALCULATE(DISTINCTCOUNT(Movimientos[Paciente ID]), Movimientos[Tipo Movimiento]="Cobros")
+MEASURE [Numero Pacientes Cobro LY] = CALCULATE([Numero Pacientes Cobro], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero Pacientes LY] = CALCULATE([Numero Pacientes], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero Pacientes Tratados LY] = CALCULATE([Numero de pacientes tratados], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Numero Presupuesto Aceptado] = CALCULATE([UD Presupuestados],Movimientos[IdEstadoPresupuesto]  = 3)
+MEASURE [Numero Presupuesto En Curso] = CALCULATE([UD Presupuestados],Movimientos[IdEstadoPresupuesto]  = 4)
+MEASURE [Numero Presupuesto Entregado] = CALCULATE([UD Presupuestados],Movimientos[IdEstadoPresupuesto]  = 1)
+MEASURE [Numero Presupuesto Finalizado] = CALCULATE([UD Presupuestados],Movimientos[IdEstadoPresupuesto]  = 5)
+MEASURE [Numero Presupuesto Nuevo] = CALCULATE([UD Presupuestados],Movimientos[IdEstadoPresupuesto]  = 0)
+MEASURE [Numero Presupuesto Rechazado] = CALCULATE([UD Presupuestados], Movimientos[IdEstadoPresupuesto]  = 2)
+MEASURE [Numero tratamientos sin doctor] = 
+    CALCULATE (
+        DISTINCTCOUNT ( Movimientos[Detalle Plan Tratamiento ID] ),
+        Movimientos[Tipo Movimiento] = "Produccion Lineas",
+        Movimientos[Doctor ID] = "_SIN DEFINIR"
+    )
+
+MEASURE [Numero tratamientos sin grupo medico] = 
+ CALCULATE (
+        DISTINCTCOUNT ( Movimientos[Detalle Plan Tratamiento ID] ),
+        Movimientos[Tipo Movimiento] = "Produccion Lineas",
+        Movimientos[Grupo Medico ID] = -1
+    )
+MEASURE [Numero tratamientos sin presupuesto] = CALCULATE(COUNT(Movimientos[IdTratamientoMedico]), Movimientos[Movimiento] = "Produccion", Movimientos[TienePresupuesto]=0)
+MEASURE [Presupuestos aceptados por fecha aceptacion (€)] = SUM(Movimientos[Importe Presupuesto Aceptado Fecha Aceptacion])
+MEASURE [Presupuestos aceptados por fecha aceptacion LY (€)] = CALCULATE([Presupuestos aceptados por fecha aceptacion (€)], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Previsión consumo] = CALCULATE(SUM(Movimientos[PrecioCosteComponente]), Movimientos[_Previsto] = 1)
+MEASURE [Ticket Medio] = DIVIDE([Euros Presupuestado],[UD Presupuestados])
+MEASURE [Ticket Medio Aceptado] = DIVIDE([Euros Aceptados],[UD Aceptados])
+MEASURE [Ticket Medio Aceptado LY] = 
+CALCULATE(
+    [Ticket Medio Aceptado],
+    SAMEPERIODLASTYEAR(Calendario[Fecha])
+)
+
+MEASURE [Ticket medio cita agenda (€)] = DIVIDE([Valor citas agenda (€)], [Numero de citas en agenda])
+MEASURE [Ticket Medio Paciente] = DIVIDE([Euros Presupuestado],[Numero Pacientes])
+MEASURE [Ticket Medio Paciente LY] = 
+CALCULATE(
+    [Ticket Medio Paciente],
+    SAMEPERIODLASTYEAR(Calendario[Fecha])
+)
+
+MEASURE [Ticket Medio Pacientes Tratados] = DIVIDE([Euros Produccion], [Numero de pacientes tratados])
+MEASURE [Ticket Medio Pacientes Tratados LY] = CALCULATE([Ticket Medio Pacientes Tratados], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Ticket Medio por Acto (€)] = DIVIDE([Euros Produccion], [Numero de Actos])
+MEASURE [Ticket Medio Presupuestado] = DIVIDE([Euros Presupuestado],[UD Presupuestados])
+MEASURE [Ticket Medio Presupuestado LY] = CALCULATE([Ticket Medio Presupuestado], SAMEPERIODLASTYEAR((Calendario[Fecha])))
+MEASURE [Ticket Medio Produccion (€)] = DIVIDE([Euros Produccion], [Numero de tratamientos])
+MEASURE [Ticket Medio Produccion LY (€)] = DIVIDE([Euros Produccion LY], [Numero de tratamientos LY])
+MEASURE [Ticket medio sillon (€)] = DIVIDE([Euros Produccion], [Numero de sillones])
+MEASURE [Ticket medio sillon LY] = CALCULATE([Ticket medio sillon (€)], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Total beneficio] = [Euros Produccion] - [Importe Gastos]
+MEASURE [Tratamientos por pacientes] = DIVIDE([Numero de tratamientos], [Numero de pacientes tratados])
+MEASURE [Tratamientos por pacientes LY] = CALCULATE([Tratamientos por pacientes], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [UD Aceptado LY] = CALCULATE([UD Aceptados], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [UD Aceptados] = CALCULATE([UD Presupuestados], ISBLANK(Presupuestos[Presupuesto Fecha Aceptacion]) = FALSE())
+MEASURE [UD Presupuestados] = CALCULATE(DISTINCTCOUNT(Movimientos[Presupuesto ID]), Movimientos[_Presupuesto] = 1)
+MEASURE [UD Presupuestados LY] = CALCULATE([UD Presupuestados],SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [UD Presupuestos Aceptados por Fecha Aceptacion] = CALCULATE(DISTINCTCOUNT(Movimientos[Presupuesto ID]), Movimientos[_Presupuesto Aceptado] = 1)
+MEASURE [UD Presupuestos Aceptados por Fecha Aceptacion LY] = CALCULATE([UD Presupuestos Aceptados por Fecha Aceptacion], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Valor citas agenda (€)] = SUM(Movimientos[Importe Cita])
+MEASURE [Var. %. Produccion Vs Cobrado] = [% Produccion Vs Cobrado] - CALCULATE([% Produccion Vs Cobrado], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Var. %. Produccion Vs P.Aceptados] = [%. Produccion Vs Presupuetos Aceptados +] - CALCULATE([%. Produccion Vs Presupuetos Aceptados +], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Var. %Aceptacion Euros] = [%. Aceptacion Euros] - CALCULATE([%. Aceptacion Euros], SAMEPERIODLASTYEAR(Calendario[Fecha]))
+MEASURE [Var. Capacidad Doctores] = [Capacidad doctores (Horas)] - [Capacidad doctores (Horas) LY]
+MEASURE [Var. Cobrado (€)] = [Cobrado (€)] - [Cobrado (€) LY]
+MEASURE [Var. Cobro Medio x Pacientes (€)] = [Cobro Medio x Paciente (€)] - [Cobro Medio x Pacientes (€) LY]
+MEASURE [Var. Costes Produccion] = [Costes produccion] - [Costes produccion LY]
+MEASURE [Var. Duracion citas] = [Duracion citas] - [Duracion citas LY]
+MEASURE [Var. Euros Aceptados] = [Euros Aceptados] - [Euros Aceptados LY]
+MEASURE [Var. Euros Presupuestados] = [Euros Presupuestado] - [Euros Presupuestados LY]
+MEASURE [Var. Euros Produccion] = [Euros Produccion] - [Euros Produccion LY]
+MEASURE [Var. Gastos] = [Importe Gastos] - [Gastos LY]
+MEASURE [Var. Media dias aceptacion presupuesto] = [Media dias aceptacion presupuesto]- [Media dias aceptacion presupuesto LY]
+MEASURE [Var. Numero de citas en agenda] = [Numero de citas en agenda] - [Numero de citas en agenda LY]
+MEASURE [Var. Numero de pacientes atendidos] = [Numero de pacientes atendidos] - [Numero de pacientes atendidos LY]
+MEASURE [Var. Numero de tratamiento] = [Numero de tratamientos] - [Numero de tratamientos LY]
+MEASURE [Var. Numero Pacientes Cobro] = [Numero Pacientes Cobro] - [Numero Pacientes Cobro LY]
+MEASURE [Var. Numero Pacientes Tratados] = [Numero de pacientes tratados] - [Numero Pacientes Tratados LY]
+MEASURE [Var. Pacientes Aceptados] = [Numero Pacientes Aceptados] - [Numero Pacientes Aceptados LY]
+MEASURE [Var. Pacientes Presupuestados] = [Numero Pacientes] - [Numero Pacientes LY]
+MEASURE [Var. Presupuestos aceptados por fecha aceptacion (€)] = [Presupuestos aceptados por fecha aceptacion (€)] - [Presupuestos aceptados por fecha aceptacion LY (€)]
+MEASURE [Var. Ticket Medio Aceptado] = 
+[Ticket Medio Aceptado] - [Ticket Medio Aceptado LY]
+
+MEASURE [Var. Ticket Medio Paciente] = 
+[Ticket Medio Paciente] - [Ticket Medio Paciente LY]
+
+MEASURE [Var. Ticket Medio Presupuestado] = [Ticket Medio Presupuestado] - [Ticket Medio Presupuestado LY]
+MEASURE [Var. Ticket Medio Produccion] = [Ticket Medio Produccion (€)] - [Ticket Medio Produccion LY (€)]
+MEASURE [Var. Ticket medio sillon] = [Ticket medio sillon (€)] - [Ticket medio sillon LY]
+MEASURE [Var. Ticket Mediod Pacientes Tratados] = [Ticket Medio Pacientes Tratados] - [Ticket Medio Pacientes Tratados LY]
+MEASURE [Var. Tratamientos por pacientes] = [Tratamientos por pacientes] - [Tratamientos por pacientes LY]
+MEASURE [Var. UD Aceptado] = [UD Aceptados] - [UD Aceptado LY]
+MEASURE [Var. UD Presupuestados] = [UD Presupuestados] - [UD Presupuestados LY]
+MEASURE [Var. UD Presupuestos aceptados por fecha aceptacion] = [UD Presupuestos Aceptados por Fecha Aceptacion] - [UD Presupuestos Aceptados por Fecha Aceptacion LY]
+MEASURE [Variación deuda cliente] = [Deuda Cliente (€)] - [Cobrado (€)]
+---- MODEL MEASURES END ----
+
+EVALUATE
+ADDCOLUMNS(
+    SELECTCOLUMNS(
+        $SYSTEM.TMSCHEMA_MEASURES,
+        "Measure Name", [Name],
+        "Expression", [Expression],
+        "TableID", [TableID]
+    ),
+    "Table Name",
+    LOOKUPVALUE(
+        $SYSTEM.TMSCHEMA_TABLES[Name],
+        $SYSTEM.TMSCHEMA_TABLES[ID],
+        [TableID]
+    )
+)

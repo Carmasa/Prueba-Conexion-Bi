@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informe Mensual</title>
+    <link rel="stylesheet" href="ingresos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+
+        <header>
+            <h1>Objetivo semanal</h1>
+        </header>
+
+        <div class="filtros-panel">
+            <select id="yearSelector" class="selector-kpi"></select>
+            <select id="monthSelector" class="selector-kpi"></select>
+            <select id="weekSelector" class="selector-kpi"></select>
+        </div>
+        <div class="botonera">
+            <a href="ingresos.html" class="boton">Euros</a>
+            <a href="pacientes.html" class="boton">Pacientes</a>
+        </div>
+        <div class="contenedor-cards">
+            <!-- Columna Izquierda -->
+            <div class="columna-total">
+                <!-- Presupuestados -->
+                <section class="main-card" id="card-presupuestado">
+                    <div class="columna-izquierda">
+                        <h2>Presupuestados:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="presupuestado-value"></span>
+                                <div class="status">
+                                    <span class="icon-1">✔</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p><strong> +/- Objetivo: </strong><span id="presupuestado-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-presupuestado"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p><strong>+/- Año anterior: </strong><span id="presupuestado-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red"
+                                    id="tasa-presupuestado-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero" id="presupuestado-barra-actual"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero" id="presupuestado-barra-objetivo"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero" id="presupuestado-barra-anterior"></span></p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Aceptado -->
+                <section class="main-card" id="card-aceptado">
+                    <div class="columna-izquierda">
+                        <h2>Aceptado:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="aceptado-value"></span>
+                                <div class="status">
+                                    <span class="icon-2">✔</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p><strong> +/- Objetivo: </strong><span id="aceptado-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-aceptado"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p><strong>+/- Año anterior: </strong><span id="aceptado-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red" id="tasa-aceptado-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero"></span></p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Columna Derecha -->
+            <div class="columna-total">
+                <!-- Producción -->
+                <section class="main-card" id="card-produccion">
+                    <div class="columna-izquierda">
+                        <h2>Producción:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="produccion-value"></span>
+                                <div class="status">
+                                    <span class="icon-2">✔</span>
+                                    <span id="produccion-status"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p><strong> +/- Objetivo: </strong><span id="produccion-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-produccion"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p><strong>+/- Año anterior: </strong><span id="produccion-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red" id="tasa-produccion-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero"></span></p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Caja -->
+                <section class="main-card" id="card-caja">
+                    <div class="columna-izquierda">
+                        <h2>Caja:</h2>
+                        <div class="box resultado-box">
+                            <div class="resultado">
+                                <span class="numero" id="caja-value"></span>
+                                <div class="status">
+                                    <span class="icon-2">✔</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <p><strong> +/- Objetivo: </strong><span id="caja-dif-objetivo"></span></p>
+                            <p class="gray">Alcance del objetivo: <span class="green" id="alcance-caja"></span>
+                                <span class="flecha-arriba"></span>
+                            </p>
+                        </div>
+                        <div class="box">
+                            <p><strong>+/- Año anterior: </strong><span id="caja-dif-anio"></span></p>
+                            <p class="gray">Tasa de evolución: <span class="red" id="tasa-caja-evolucion"></span>
+                                <span class="flecha-abajo"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="columna-central">
+                        <div class="box-ingresos">
+                            <div>
+                                <p>Actual:<span class="numero" id="caja-barra-actual"></span></p>
+                                <div class="bar actual"><span class="bar-label actual-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Objetivo:<span class="numero" id="caja-barra-objetivo"></span></p>
+                                <div class="bar objetivo"><span class="bar-label objetivo-label"></span></div>
+                            </div>
+                            <div>
+                                <p>Año anterior:<span class="numero" id="caja-barra-anterior"></span></p>
+                                <div class="bar anterior"><span class="bar-label anterior-label"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
